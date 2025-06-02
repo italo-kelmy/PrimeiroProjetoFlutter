@@ -151,7 +151,7 @@ class _AnimatedImageState extends State<AnimatedImage>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 4), // ciclo completo 10s
+      duration: const Duration(seconds: 4),
     );
 
     _animation = Tween<double>(
@@ -159,15 +159,12 @@ class _AnimatedImageState extends State<AnimatedImage>
       end: 1.1,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
-    // Aqui, mudamos o texto conforme o status da animação
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.forward) {
-        // animação indo do início para o fim: inspirar
         setState(() {
           _respirationText = "Inspire";
         });
       } else if (status == AnimationStatus.reverse) {
-        // animação retornando do fim para o início: expirar
         setState(() {
           _respirationText = "Expire";
         });
